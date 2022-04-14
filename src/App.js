@@ -18,6 +18,12 @@ function App() {
     newArray[0] = 'OC Peruvian'
     postEdit(newArray)
   }
+
+  function sortTitle() {
+    let newArray1 = [...postTitle].sort()
+    postEdit(newArray1)
+  }
+
   return (
     <div className='App'>
       <div className='black-nav'>
@@ -54,7 +60,13 @@ function App() {
         <hr />
       </div>
 
-      <button onClick={changeTitle}>Change title</button>
+      <div>
+        <button onClick={changeTitle}>Change title</button>
+      </div>
+
+      <div>
+        <button onClick={sortTitle}>Sort title</button>
+      </div>
     </div>
   )
 }
