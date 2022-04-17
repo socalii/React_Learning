@@ -61,6 +61,17 @@ function App() {
         <hr />
       </div>
 
+      {/* Map: loop HTML */}
+      {postTitle.map(function (a) {
+        return (
+          <div className='list'>
+            <h3>{a}</h3>
+            <p>posted on April 13</p>
+            <hr />
+          </div>
+        )
+      })}
+
       {/* <div>
         <button onClick={changeTitle}>Change title</button>
       </div>
