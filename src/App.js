@@ -13,6 +13,8 @@ function App() {
   let [modal, modalEdit] = useState(false)
   let [clickedTitle, clickedTitleEdit] = useState(0)
 
+  let [inputValue, inputValueEdit] = useState('')
+
   let posts = 'OC Korean BBQ'
 
   // function changeTitle() {
@@ -40,7 +42,7 @@ function App() {
       {/* Map: loop HTML */}
       {postTitle.map(function (a, i) {
         return (
-          <div className='list'>
+          <div className='list' key={i}>
             <h3
               onClick={() => {
                 clickedTitleEdit(i)
@@ -70,7 +72,7 @@ function App() {
         <button onClick={sortTitle}>Sort title</button>
       </div> */}
 
-      <button
+      {/* <button
         onClick={() => {
           clickedTitleEdit(0)
         }}
@@ -90,7 +92,24 @@ function App() {
         }}
       >
         Button3
-      </button>
+      </button> */}
+
+      <div className='publish'>
+        <input
+          onChange={(e) => {
+            inputValueEdit(e.target.value)
+          }}
+        />
+        <button
+          onClick={() => {
+            let arrayCopy = [...postTitle]
+            arrayCopy.unshift(inputValue)
+            postEdit(arrayCopy)
+          }}
+        >
+          Save
+        </button>
+      </div>
 
       <div>
         <button
