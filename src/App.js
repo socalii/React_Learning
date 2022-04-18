@@ -11,6 +11,7 @@ function App() {
   ])
   let [likeCount, likeEdit] = useState(0)
   let [modal, modalEdit] = useState(false)
+  let [clickedTitle, clickedTitleEdit] = useState(0)
 
   let posts = 'OC Korean BBQ'
 
@@ -35,37 +36,26 @@ function App() {
         <p>posted on April 12</p>
         <hr />
       </div> */}
-      <div className='list'>
-        <h3>
-          {postTitle[0]}{' '}
-          <span
-            onClick={() => {
-              likeEdit(likeCount + 1)
-            }}
-          >
-            👍🏼
-          </span>
-          {likeCount}
-        </h3>
-        <p>posted on April 12</p>
-        <hr />
-      </div>
-      <div className='list'>
-        <h3>{postTitle[1]}</h3>
-        <p>posted on April 13</p>
-        <hr />
-      </div>
-      <div className='list'>
-        <h3>{postTitle[2]}</h3>
-        <p>posted on April 13</p>
-        <hr />
-      </div>
 
       {/* Map: loop HTML */}
-      {postTitle.map(function (a) {
+      {postTitle.map(function (a, i) {
         return (
           <div className='list'>
-            <h3>{a}</h3>
+            <h3
+              onClick={() => {
+                clickedTitleEdit(i)
+              }}
+            >
+              {a}{' '}
+              <span
+                onClick={() => {
+                  likeEdit(likeCount + 1)
+                }}
+              >
+                👍🏼
+              </span>{' '}
+              {likeCount}
+            </h3>
             <p>posted on April 13</p>
             <hr />
           </div>
@@ -80,6 +70,28 @@ function App() {
         <button onClick={sortTitle}>Sort title</button>
       </div> */}
 
+      <button
+        onClick={() => {
+          clickedTitleEdit(0)
+        }}
+      >
+        Button1
+      </button>
+      <button
+        onClick={() => {
+          clickedTitleEdit(1)
+        }}
+      >
+        Button2
+      </button>
+      <button
+        onClick={() => {
+          clickedTitleEdit(2)
+        }}
+      >
+        Button3
+      </button>
+
       <div>
         <button
           onClick={() => {
@@ -88,17 +100,19 @@ function App() {
         >
           Toggle
         </button>
-        {modal === true ? <Modal /> : null}
+        {modal === true ? (
+          <Modal postTitle={postTitle} clickedTitle={clickedTitle} />
+        ) : null}
       </div>
     </div>
   )
 }
 
 // Component
-function Modal() {
+function Modal(props) {
   return (
     <div className='modal'>
-      <h2>Title</h2>
+      <h2>{props.postTitle[props.clickedTitle]}</h2>
       <p>Date</p>
       <p>Contents</p>
     </div>
